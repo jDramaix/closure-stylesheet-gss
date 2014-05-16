@@ -338,6 +338,7 @@ public final class Property {
         builder("-moz-user-select"),
         builder("-moz-window-shadow"),
         builder("-ms-accelerator"),
+        builder("-ms-align-items"),
         builder("-ms-animation"),
         builder("-ms-animation-delay"),
         builder("-ms-animation-direction"),
@@ -372,6 +373,7 @@ public final class Property {
         builder("-ms-filter"),
         builder("-ms-flex"),
         builder("-ms-flex-direction"),
+        builder("-ms-flex-flow"),
         builder("-ms-grid-column"),
         builder("-ms-grid-column-align"),
         builder("-ms-grid-column-span"),
@@ -592,8 +594,10 @@ public final class Property {
             "The flexbox spec has changed and this property is no longer supported."),
         builder("-webkit-box-ordinal-group").warn(
             "The flexbox spec has changed and this property is no longer supported."),
-        builder("-webkit-box-orient").warn(
-            "The flexbox spec has changed and this property is no longer supported."),
+        // This property should ideally trigger a warning since it's not part
+        // of the spec, but we'll allow it since there's no valid replacement
+        // when used with -webkit-line-clamp to ellipsize multiline text.
+        builder("-webkit-box-orient"),
         builder("-webkit-box-pack").warn(
             "The flexbox spec has changed and this property is no longer supported."),
         builder("-webkit-box-reflect"),

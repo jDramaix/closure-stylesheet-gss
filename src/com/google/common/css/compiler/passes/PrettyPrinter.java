@@ -70,7 +70,7 @@ public class PrettyPrinter extends DefaultTreeVisitor
   private StringBuilder sb = null;
   private String prettyPrintedString = null;
   private String indent = "";
-  private VisitController visitController;
+  private final VisitController visitController;
   private boolean stripQuotes = false;
 
   public PrettyPrinter(VisitController visitController) {
@@ -199,6 +199,7 @@ public class PrettyPrinter extends DefaultTreeVisitor
   //     this.
   @Override
   public boolean enterDeclarationBlock(CssDeclarationBlockNode block) {
+    deleteEndingIfEndingIs(" ");
     sb.append(" {\n");
     indent += "  ";
     return true;
@@ -447,13 +448,12 @@ public class PrettyPrinter extends DefaultTreeVisitor
       if (!(node.getBlock() instanceof CssDeclarationBlockNode)) {
         indent = indent.substring(0, indent.length() - 2);
         sb.append(indent);
-        sb.append("}");
+        sb.append("}\n");
       }
     } else {
       deleteEndingIfEndingIs(" ");
-      sb.append(';');
+      sb.append(";\n");
     }
-    sb.append('\n');
   }
 
   @Override
@@ -476,11 +476,10 @@ public class PrettyPrinter extends DefaultTreeVisitor
     if (node.getType().hasBlock()) {
       indent = indent.substring(0, indent.length() - 2);
       sb.append(indent);
-      sb.append("}");
+      sb.append("}\n");
     } else {
-      sb.append(';');
+      sb.append(";\n");
     }
-    sb.append('\n');
   }
 
   @Override

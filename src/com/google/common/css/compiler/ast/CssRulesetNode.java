@@ -82,6 +82,7 @@ public class CssRulesetNode extends CssNode {
     this(node.getDeclarations().deepCopy());
     this.setComments(node.getComments());
     this.selectors = node.getSelectors().deepCopy();
+    this.setSourceCodeLocation(node.getSourceCodeLocation());
   }
 
   @Override

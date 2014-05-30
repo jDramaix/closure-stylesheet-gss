@@ -23,7 +23,7 @@
     <packaging>jar</packaging>
 
     <name>Closure Stylesheets</name>
-    <version>v20140516</version>
+    <version>v20140530</version>
 
     <url>http://code.google.com/p/closure-stylesheets/</url>
     <description>

@@ -39,6 +39,7 @@ import com.google.common.css.compiler.ast.GssFunctionException;
 
 import java.awt.Color;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -902,7 +903,9 @@ public class GssFunctions {
         }
         total = performOperation(total, value);
       }
-      String resultString = new DecimalFormat(DECIMAL_FORMAT).format(total);
+      DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance();
+      symbols.setDecimalSeparator('.');
+      String resultString = new DecimalFormat(DECIMAL_FORMAT, symbols).format(total);
 
       return new CssNumericNode(resultString,
           overallUnit != null ? overallUnit : CssNumericNode.NO_UNITS,
@@ -1007,7 +1010,10 @@ public class GssFunctions {
         double value = Double.valueOf(node.getNumericPart());
         total = performOperation(total, value);
       }
-      String resultString = new DecimalFormat(DECIMAL_FORMAT).format(total);
+
+      DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance();
+      symbols.setDecimalSeparator('.');
+      String resultString = new DecimalFormat(DECIMAL_FORMAT, symbols).format(total);
 
       return new CssNumericNode(resultString,
           overallUnit != null ? overallUnit : CssNumericNode.NO_UNITS,

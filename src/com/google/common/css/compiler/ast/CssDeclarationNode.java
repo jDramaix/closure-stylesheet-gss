@@ -18,9 +18,8 @@ package com.google.common.css.compiler.ast;
 
 import com.google.common.base.Preconditions;
 
-import java.util.List;
-
 import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * A node representing a CSS declaration in the abstract syntax tree.
@@ -113,6 +112,8 @@ public class CssDeclarationNode extends CssNode {
         node.getPropertyValue().deepCopy(),
         node.getComments(),
         node.hasStarHack());
+
+    this.setSourceCodeLocation(node.getSourceCodeLocation());
   }
 
   @Override
